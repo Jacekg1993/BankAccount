@@ -10,6 +10,7 @@ namespace BankAccountV2
     {
         static void Main(string[] args)
         {
+            List<BankAccount> BankAccountsList = new List<BankAccount>();
             int MainMenuChoosedOption;
 
             while (true)
@@ -23,7 +24,12 @@ namespace BankAccountV2
                     break;
                 }
 
-                Menu.MainMenuOptions(MainMenuChoosedOption);
+                Menu.MainMenuOptions(MainMenuChoosedOption, BankAccountsList);
+            }
+
+            foreach (BankAccount bankAccount in BankAccountsList)
+            {
+                Console.WriteLine(bankAccount.OwnerName);
             }
 
             /*
