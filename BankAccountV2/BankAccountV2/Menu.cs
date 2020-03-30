@@ -15,16 +15,18 @@ namespace BankAccountV2
             Console.Write("\nChoose an option: ");
         }
 
-        public static void MainMenuOptions(int choice, List<BankAccount> BankAccounts)
+        public static void MainMenuOptions(int choice, List<BankAccount> BankAccountsList)
         {
             switch (choice)
             {
                 case 1:
                     break;
                 case 2:
-                    CreateAccountMenuDisplay(BankAccounts);
+                    CreateAccountMenuDisplay(BankAccountsList);
                     break;
                 case 3:
+                    Console.WriteLine(GetAccountsList(BankAccountsList));
+                    Console.ReadKey();
                     break;
                 default:
                     break;
@@ -48,6 +50,21 @@ namespace BankAccountV2
             BankAccountsList.Add(new BankAccount(OwnerName, InitialBalance));
 
             Console.ReadKey();
+        }
+
+        public static string GetAccountsList(List<BankAccount> BankAccountsList)
+        {
+            Console.Clear();
+
+            StringBuilder AccountsList = new System.Text.StringBuilder();
+            AccountsList.AppendLine("Owner name\tAccount NR");   
+            
+            foreach (BankAccount bankAccount in BankAccountsList)
+            {
+                AccountsList.AppendLine($"{bankAccount.OwnerName}\t{bankAccount.Number}");
+            }
+
+            return AccountsList.ToString();
         }
     }
 }

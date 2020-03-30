@@ -27,11 +27,7 @@ namespace BankAccountV2
                 Menu.MainMenuOptions(MainMenuChoosedOption, BankAccountsList);
             }
 
-            foreach (BankAccount bankAccount in BankAccountsList)
-            {
-                Console.WriteLine(bankAccount.OwnerName);
-            }
-
+            
             /*
             try
             {
