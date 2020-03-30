@@ -10,8 +10,10 @@ namespace BankAccountV2
     {
         public string Number { get; }
         public string OwnerName { get; set; }
-        private static int accountNumberSeed = 1234567890;
+        private static int accountNumberSeed = 1111;
         public List<Transaction> allTransactions = new List<Transaction>();
+        public string AccountPassword;
+
         public decimal Balance
         {
             get
@@ -65,10 +67,12 @@ namespace BankAccountV2
             return report.ToString();
         }
 
-        public BankAccount(string name, decimal initialBalance)
+        public BankAccount(string name, decimal initialBalance, string accountPassword)
         {
             this.OwnerName = name;
             MakeDeposit(initialBalance, DateTime.Now, "Initial balance");
+
+            this.AccountPassword = accountPassword;
 
             this.Number = accountNumberSeed.ToString();
             accountNumberSeed++;
