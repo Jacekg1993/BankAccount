@@ -42,9 +42,9 @@ namespace BankAccountV2
             string password;
             int accountIndex;
             char loopContinue;
-            bool loopExit = true;
+            bool loopExit = false;
 
-            while(loopExit)
+            while(loopExit == false)
             {
                 Console.Clear();
 
@@ -69,14 +69,14 @@ namespace BankAccountV2
                 }
                 else
                 {
-                    AccountOptionsMenu();
+                    AccountOptionsMenu(BankAccountsList[accountIndex]);
                 }
 
-                Console.Write("Do you want to repeat? [y/n]: ");
+                Console.Write("Do you want to repeat signing in? [y/n]: ");
                 loopContinue = Console.ReadKey().KeyChar;
                 if((loopContinue != 'Y') && (loopContinue != 'y'))
                 {
-                    loopExit = false;
+                    loopExit = true;
                 }
 
             }
@@ -121,31 +121,56 @@ namespace BankAccountV2
             return AccountsList.ToString();
         }
 
-        public static void AccountOptionsMenu()
+        public static void AccountOptionsMenu(BankAccount BankAccount)
         {
+            int depositAmount;
+            int withdrawalAmount;
+            string depositNote;
+            string withdrawalNote;
+
             int accountMenuChoice;
             Console.WriteLine("You are logged in...Press any button");
             Console.ReadKey();
             Console.Clear();
+            bool loopExit = false;
 
-            Console.WriteLine("Options:\n1: Balance\n2: Deposit\n3: Withdrawal\n4: Delete account\n5: Exit");
-            Console.Write("____________________");
-            Console.Write("\nSelect option: ");
-            accountMenuChoice = int.Parse(Console.ReadLine());
-
-            switch(accountMenuChoice)
+            while (loopExit == false)
             {
-                case 1:
-                    
-                    break;
-                case 2:
-                    
-                    break;
-                case 3:
-                    
-                    break;
-                default:
-                    break;
+                Console.Clear();
+                Console.WriteLine("Options:\n1: Balance\n2: Deposit\n3: Withdrawal\n4: Delete account\n5: Exit");
+                Console.Write("____________________");
+                Console.Write("\nSelect option: ");
+                accountMenuChoice = int.Parse(Console.ReadLine());
+
+                switch (accountMenuChoice)
+                {
+                    case 1:
+                        Console.WriteLine($"Balance: {BankAccount.Balance}");
+                        Console.ReadKey();
+                        break;
+                    case 2:
+                        Console.Write("Deposit amount: ");
+                        depositAmount = int.Parse(Console.ReadLine());
+                        Console.Write("Additional information: ");
+                        depositNote = Console.ReadLine();
+                        BankAccount.MakeDeposit(depositAmount, DateTime.Now, depositNote);
+                        break;
+                    case 3:
+                        Console.Write("Withdrawal amount: ");
+                        withdrawalAmount = int.Parse(Console.ReadLine());
+                        Console.Write("Additional information: ");
+                        withdrawalNote = Console.ReadLine();
+                        BankAccount.MakeWithdrawal(withdrawalAmount, DateTime.Now, withdrawalNote);
+                        break;
+                    case 4:
+
+                        break;
+                    case 5:
+                        loopExit = true;
+                        Console.Clear();
+                        break;                   
+                }
+
             }
 
             Console.ReadKey();
