@@ -137,7 +137,7 @@ namespace BankAccountV2
             while (loopExit == false)
             {
                 Console.Clear();
-                Console.WriteLine("Options:\n1: Balance\n2: Deposit\n3: Withdrawal\n4: Delete account\n5: Exit");
+                Console.WriteLine("Options:\n1: Balance\n2: Deposit\n3: Withdrawal\n4: Account history\n5: Delete account\n6: Exit");
                 Console.Write("____________________");
                 Console.Write("\nSelect option: ");
                 accountMenuChoice = int.Parse(Console.ReadLine());
@@ -163,9 +163,14 @@ namespace BankAccountV2
                         BankAccount.MakeWithdrawal(withdrawalAmount, DateTime.Now, withdrawalNote);
                         break;
                     case 4:
-
+                        Console.WriteLine("Account history: ");
+                        Console.WriteLine(BankAccount.GetAccountHistory());
+                        Console.ReadKey();
                         break;
                     case 5:
+
+                        break;
+                    case 6:
                         loopExit = true;
                         Console.Clear();
                         break;                   
