@@ -69,7 +69,7 @@ namespace BankAccountV2
                 }
                 else
                 {
-                    AccountOptionsMenu(BankAccountsList[accountIndex]);
+                    AccountOptionsMenu(BankAccountsList[accountIndex], BankAccountsList, accountIndex);
                 }
 
                 Console.Write("Do you want to repeat signing in? [y/n]: ");
@@ -121,7 +121,7 @@ namespace BankAccountV2
             return AccountsList.ToString();
         }
 
-        public static void AccountOptionsMenu(BankAccount BankAccount)
+        public static void AccountOptionsMenu(BankAccount BankAccount, List<BankAccount> BankAccountsList, int accountIndex)
         {
             int depositAmount;
             int withdrawalAmount;
@@ -168,7 +168,12 @@ namespace BankAccountV2
                         Console.ReadKey();
                         break;
                     case 5:
-
+                        Console.Write("Deleting account... ");
+                        BankAccount = new BankAccount();
+                        BankAccountsList.RemoveAt(accountIndex);
+                        loopExit = true;
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     case 6:
                         loopExit = true;

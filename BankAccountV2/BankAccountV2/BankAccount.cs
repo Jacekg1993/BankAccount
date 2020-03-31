@@ -78,5 +78,12 @@ namespace BankAccountV2
             accountNumberSeed++;
 
         }
+
+        public BankAccount()
+        {
+            this.OwnerName = null;
+            this.AccountPassword = null;
+            this.Number = null;
+        }
     }
 }
