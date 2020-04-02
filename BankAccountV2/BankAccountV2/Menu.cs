@@ -137,7 +137,7 @@ namespace BankAccountV2
             while (loopExit == false)
             {
                 Console.Clear();
-                Console.WriteLine("Options:\n1: Balance\n2: Deposit\n3: Withdrawal\n4: Account history\n5: Delete account\n6: Exit");
+                Console.WriteLine("Options:\n1: Balance\n2: Deposit\n3: Withdrawal\n4: Account history\n5: Card options\n6: Delete account\n7: Exit");
                 Console.Write("____________________");
                 Console.Write("\nSelect option: ");
                 accountMenuChoice = int.Parse(Console.ReadLine());
@@ -168,6 +168,12 @@ namespace BankAccountV2
                         Console.ReadKey();
                         break;
                     case 5:
+                        BankAccount.AddCard("Debit card", 1000, BankAccount);
+                        BankAccount.AddCard("Credit card", 6000, BankAccount);
+                        Console.WriteLine(BankAccount.GetBankAccountCardList());
+                        Console.ReadKey();
+                        break;
+                    case 6:
                         Console.Write("Deleting account... ");
                         BankAccount = new BankAccount();
                         BankAccountsList.RemoveAt(accountIndex);
@@ -175,7 +181,7 @@ namespace BankAccountV2
                         Console.ReadKey();
                         Console.Clear();
                         break;
-                    case 6:
+                    case 7:
                         loopExit = true;
                         Console.Clear();
                         break;                   
