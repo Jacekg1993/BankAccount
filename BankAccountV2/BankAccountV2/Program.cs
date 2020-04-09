@@ -4,27 +4,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace BankAccountV2
 {
     class Program
     {
+        public enum MenuOptions
+        {
+            SignIn = 1,
+            Create,
+            GetList,
+            Exit           
+        }
+
         static void Main(string[] args)
         {
-            List<BankAccount> BankAccountsList = new List<BankAccount>();
-            int MainMenuChoosedOption;
+    
+        List<BankAccount> BankAccountsList = new List<BankAccount>();
+            MenuOptions MainMenuChoosedOption;
+            int MainMenuChoosedOption2;
 
             while (true)
             {
                 Console.Clear();
 
                 Menu.MainMenuDisplay();
-                MainMenuChoosedOption = int.Parse(Console.ReadLine());
-                if (MainMenuChoosedOption == 4)
+                MainMenuChoosedOption2 = int.Parse(Console.ReadLine());
+                MainMenuChoosedOption = (MenuOptions)MainMenuChoosedOption2;
+                if (MenuOptions.Exit) 
                 {
                     break;
                 }
 
-                Menu.MainMenuOptions(MainMenuChoosedOption, BankAccountsList);
+                Menu.MainMenuOptions(MainMenuChoosedOption, BankAccountsList, MainMenuChoosedOption);
             }
 
             

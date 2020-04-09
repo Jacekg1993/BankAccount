@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace BankAccountV2
 {
+    enum MenuOptions
+    {
+        SignIn = 1,
+        Create,
+        GetList
+    }
+
     class Menu
     {
         public static void MainMenuDisplay()

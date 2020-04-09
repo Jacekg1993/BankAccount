@@ -9,7 +9,7 @@ namespace BankAccountV2
     class BankAccount
     {
         public string Number { get; }
-        public string OwnerName { get; set; }
+        public string OwnerName { get; }
         private static int accountNumberSeed = 1111;
         public List<Transaction> allTransactions = new List<Transaction>();
         public string AccountPassword;
