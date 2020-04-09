@@ -6,13 +6,6 @@ using System.Threading.Tasks;
 
 namespace BankAccountV2
 {
-    enum MenuOptions
-    {
-        SignIn = 1,
-        Create,
-        GetList
-    }
-
     class Menu
     {
         public static void MainMenuDisplay()
@@ -22,17 +15,17 @@ namespace BankAccountV2
             Console.Write("\nSelect option: ");
         }
 
-        public static void MainMenuOptions(int mainMenuChoice, List<BankAccount> BankAccountsList)
+        public static void MainMenuOptions(List<BankAccount> BankAccountsList, MenuOptions option)
         {
-            switch (mainMenuChoice)
+            switch (option)
             {
-                case 1:
+                case MenuOptions.SignIn:
                     SigningIntoAccount(BankAccountsList);
                     break;
-                case 2:
+                case MenuOptions.Create:
                     CreateAccountMenuDisplay(BankAccountsList);
                     break;
-                case 3:
+                case MenuOptions.GetList:
                     Console.WriteLine(GetAccountsList(BankAccountsList));
                     Console.ReadKey();
                     break;

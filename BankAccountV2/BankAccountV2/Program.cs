@@ -8,36 +8,38 @@ using System.Threading.Tasks;
 
 namespace BankAccountV2
 {
+    public enum MenuOptions
+    {
+        SignIn = 1,
+        Create,
+        GetList,
+        Exit
+    }
+
     class Program
     {
-        public enum MenuOptions
-        {
-            SignIn = 1,
-            Create,
-            GetList,
-            Exit           
-        }
-
+       
         static void Main(string[] args)
         {
     
         List<BankAccount> BankAccountsList = new List<BankAccount>();
             MenuOptions MainMenuChoosedOption;
-            int MainMenuChoosedOption2;
+            int MainMenuChoosedOptionInt;
 
             while (true)
             {
                 Console.Clear();
 
                 Menu.MainMenuDisplay();
-                MainMenuChoosedOption2 = int.Parse(Console.ReadLine());
-                MainMenuChoosedOption = (MenuOptions)MainMenuChoosedOption2;
-                if (MenuOptions.Exit) 
+                MainMenuChoosedOptionInt = int.Parse(Console.ReadLine());
+                MainMenuChoosedOption = (MenuOptions)MainMenuChoosedOptionInt;
+
+                if (MainMenuChoosedOption == (MenuOptions)4) 
                 {
                     break;
                 }
 
-                Menu.MainMenuOptions(MainMenuChoosedOption, BankAccountsList, MainMenuChoosedOption);
+                Menu.MainMenuOptions(BankAccountsList, MainMenuChoosedOption);
             }
 
             
