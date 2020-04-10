@@ -8,8 +8,8 @@ namespace BankAccountV2
 {
     class BankAccount
     {
+        public OwnerName UserName;
         public string Number { get; }
-        public string OwnerName { get; }
         private static int accountNumberSeed = 1111;
         public List<Transaction> allTransactions = new List<Transaction>();
         public string AccountPassword;
@@ -25,7 +25,6 @@ namespace BankAccountV2
                 }
                 return balance;
             }
-
         }
 
         public void MakeDeposit(decimal amount, DateTime date, string note)
@@ -63,27 +62,67 @@ namespace BankAccountV2
                 balance += item.Amount;
                 report.AppendLine($"{item.Date.ToShortDateString()}\t{item.Amount}\t{balance}\t{item.Notes}");
             }
-
             return report.ToString();
+        }
+        
+        public string GetName()
+        {
+            return UserName[0];
+        }
+
+        public string GetSurname()
+        {
+            return UserName[1];
+        }
+
+        public string GetFullName()
+        {
+            return UserName[0] + " " + UserName[1];
         }
 
         public BankAccount(string name, decimal initialBalance, string accountPassword)
         {
-            this.OwnerName = name;
+            this.UserName = new OwnerName(name);
             MakeDeposit(initialBalance, DateTime.Now, "Initial balance");
-
             this.AccountPassword = accountPassword;
-
             this.Number = accountNumberSeed.ToString();
             accountNumberSeed++;
-
         }
 
         public BankAccount()
         {
-            this.OwnerName = null;
+            this.UserName = null;
             this.AccountPassword = null;
             this.Number = null;
+        }
+
+        public class OwnerName
+        {
+            private string[] ownerName;
+
+            public OwnerName(string name)
+            {
+                this.ownerName = name.Split();
+            }
+
+            public string this[int n]
+            {
+                get
+                {
+                    if (ownerName.Length > n)
+                    {
+                        return ownerName[n];
+                    }
+                    return null;
+                }
+                set
+                {
+                    if (ownerName.Length > n)
+                    {
+                        ownerName[n] = value;
+                    }
+                }
+            }
         }
     }
 }

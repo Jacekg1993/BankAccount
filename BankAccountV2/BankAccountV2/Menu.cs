@@ -92,7 +92,7 @@ namespace BankAccountV2
             Console.Clear();
             Console.WriteLine("Create Account:\n________________");
 
-            Console.Write("Owner name: ");
+            Console.Write("Owner name and surname: ");
             OwnerName = Console.ReadLine();
 
             Console.Write("Password: ");
@@ -115,7 +115,7 @@ namespace BankAccountV2
             
             foreach (BankAccount bankAccount in BankAccountsList)
             {
-                AccountsList.AppendLine($"{bankAccount.OwnerName}\t{bankAccount.Number}");
+                AccountsList.AppendLine($"{bankAccount.GetFullName()}\t{bankAccount.Number}");
             }
 
             return AccountsList.ToString();
@@ -129,7 +129,7 @@ namespace BankAccountV2
             string withdrawalNote;
 
             int accountMenuChoice;
-            Console.WriteLine("You are logged in...Press any button");
+            Console.WriteLine($"Welcome Mr/Mrs {BankAccount.GetSurname()}\n You are logged in...Press any button");
             Console.ReadKey();
             Console.Clear();
             bool loopExit = false;
